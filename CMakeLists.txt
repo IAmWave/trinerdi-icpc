@@ -27,6 +27,7 @@ set(SOURCES_LIST
     tree/heavylight
     tree/heavylight2
     segtree/persistent_segtree
+    string/aho_corasick
 )
 
 foreach(CUR ${SOURCES_LIST})
