@@ -16,3 +16,8 @@ e(){
 	b "$@"
 	for i in "$(name)".in*; do echo $i:; c "$@" < $i; done
 }
+n(){
+	mkdir "$1"
+	cd "$1"
+	cp -rn ../template.cpp "$1".cpp
+}
