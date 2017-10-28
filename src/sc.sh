@@ -1,12 +1,9 @@
 alias t="basename \$(realpath .)" # Assumption: prints an alphanumeric string
 b(){
 	fl=-O2\ -fsanitize=address
-	[ a"$1" = a-d ] && fl=-g
+	[ a"$1" = a-d ] && fl=-g && v=valgrind
 	g++ -std=c++11 -lm -Wall -Wno-sign-compare -Wshadow $fl `t`.cpp -o `t`
-}
-e(){
-	b "$@"
-	for i in `t`.in*; do echo $i:; `[ a"$1" = a-d ] && echo valgrind` ./`t` < $i; done
+	for i in `t`.in*; do echo $i:; $v ./`t` < $i; done
 }
 n(){
 	mkdir "$1"
