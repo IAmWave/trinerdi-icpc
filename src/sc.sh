@@ -1,14 +1,12 @@
-name(){
-	basename `realpath .`
-}
+alias t="basename \$(realpath .)" # Assumption: prints an alphanumeric string
 b(){
-	flags=-O2\ -fsanitize=address
-	[ a"$1" = a-d ] && flags=-g
-	g++ -std=c++11 -lm -Wall -Wno-sign-compare -Wshadow $flags "$(name)".cpp -o "$(name)"
+	fl=-O2\ -fsanitize=address
+	[ a"$1" = a-d ] && fl=-g
+	g++ -std=c++11 -lm -Wall -Wno-sign-compare -Wshadow $fl `t`.cpp -o `t`
 }
 e(){
 	b "$@"
-	for i in "$(name)".in*; do echo $i:; `[ a"$1" = a-d ] && echo valgrind` ./"$(name)" < $i; done
+	for i in `t`.in*; do echo $i:; `[ a"$1" = a-d ] && echo valgrind` ./`t` < $i; done
 }
 n(){
 	mkdir "$1"
