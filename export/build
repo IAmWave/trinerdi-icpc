@@ -10,7 +10,7 @@ OUT_NAME = "out"
 
 def checksum(line):
     """Calculates the checksum consistently with /src/check.sh."""
-    numchars = 3
+    numchars = 2
     line.strip()
     if len(line) == 0: # Print nothing for an empty line
         return ""
