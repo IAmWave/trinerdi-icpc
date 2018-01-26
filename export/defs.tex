@@ -22,14 +22,14 @@
 
 % Defines special escape sequences that print {, }, \ when used in monospace
 \def\makeprintable{%
-	\def\do##1{\catcode`##1=12}
+	\def\do##1{\catcode`##1=12}%
 	\dospecials
-	\catcode`\\=0
-	\catcode`\{=1
-	\catcode`\}=2
-	\gdef\{{\char123\relax}
-	\gdef\}{\char125\relax}
-	\gdef\b##1##2{\char92\relax##2} % Backspace
+	\catcode`\\=0%
+	\catcode`\{=1%
+	\catcode`\}=2%
+	\gdef\{{\char123\relax}%
+	\gdef\}{\char125\relax}%
+	\gdef\b##1##2{\char92\relax##2}% Backspace
 }
 
 % Internal macro which sets up the environment for code listing mode
@@ -39,12 +39,11 @@
 	%
 	% Allow long lines to break, let them have less \baselineskip (optically),
 	% indent line continuations
-	\baselineskip=1\fontsize\relax
+	\baselineskip=1\fontsize\relax%
 	\parskip=1.7pt plus .1pt minus .1pt%
-	\rightskip=0pt plus 1fill
-	\leftskip=100pt
-	\parindent=-\leftskip
-	%
+	\rightskip=0pt plus 1fill%
+	\leftskip=100pt%
+	\parindent=-\leftskip%
 	\setsimpleverb
 }
 
@@ -56,12 +55,10 @@
 
 % Set up fixed spaces, define tab as four spaces
 {%
- \catcode`\^^I=13\catcode`\ =13
- \gdef\setspace{%
-  \catcode`\^^I=13\catcode`\ =13
-  \def {\calccharwidth\hskip\charwidth\relax}%
-  \def^^I{    }%
- }%
+ \catcode`\^^I=13\catcode`\ =13%
+ \gdef\setspace{\catcode`\^^I=13\catcode`\ =13%
+ \def {\calccharwidth\hskip\charwidth\relax}\def^^I{    }%
+}%
 }
 
 % Sets up the verbatim environment, end with \egroup
