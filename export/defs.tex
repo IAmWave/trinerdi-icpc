@@ -39,14 +39,19 @@
 	%
 	% Allow long lines to break, let them have less \baselineskip (optically),
 	% indent line continuations
-	\baselineskip=1.1\fontsize\relax
-	\parskip=1pt plus .1pt minus .1pt
+	\baselineskip=1\fontsize\relax
+	\parskip=1.7pt plus .1pt minus .1pt%
 	\rightskip=0pt plus 1fill
 	\leftskip=100pt
 	\parindent=-\leftskip
 	%
-	\setspace
-	\obeyspaces\obeylines
+	\setsimpleverb
+}
+
+% Simplified version used for short code snippets
+\def\setsimpleverb{%
+	\makeprintable
+	\setspace\obeyspaces\obeylines%
 }
 
 % Set up fixed spaces, define tab as four spaces
