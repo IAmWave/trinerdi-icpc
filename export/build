@@ -98,7 +98,7 @@ def process_files(fs, chdir="../src"):
     for fn in fs:
         yield "\\header{%s}" % sanitize(fn)
         text = process(readfile(chdir + "/" + fn))
-        yield "\n\\smallskip\\verb " + text
+        yield "\n\\smallskip\\verb|" + text
         yield "\\egroup"
     yield "\\bye"
 

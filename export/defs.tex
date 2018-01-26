@@ -76,10 +76,19 @@
 }%
 }
 
+% TODO: think of some better delimiter than |, try to make { work (\verb|hello}
+% is way less cool than \verb{hello})
+
 % Sets up the verbatim environment, end with \egroup
-\def\verb{%
+\def\verb|{%
 	\bgroup
-	\setverb
+	\setverb%
+}
+
+% Sets up a simplfied verbatim environment, end with \egroup
+\def\simpleverb|{%
+	\bgroup
+	\setsimpleverb%
 }
 
 % \col{rgb color}{font}{content}
