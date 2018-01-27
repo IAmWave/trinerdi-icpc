@@ -77,6 +77,27 @@ def highlight(text):
     return "".join(l)
 
 
+def make_header(header):
+    def texify(text):
+        return text.replace("$O", "$\\O").replace("*", "\cdot ")
+
+    keywords = ["Time", "Memory", "Description", "Usage"]
+
+    l = []
+    for h in keywords:
+        if h in header:
+            if h == "Usage":
+                # TODO: quite a hack
+                l.append("{\\leftskip=\\usagedimen\\item{\\bf Usage:}\\simpleverb|%s\\egroup\\par}" % highlight(header[h]))
+            else:
+                l.append("{\\bf %s:} %s" % (h, texify(header[h])))
+
+    if not l:
+        return ""
+    else:
+        return "\n\n".join(l)
+
+
 def process_files(fs, chdir="../src"):
     def process(text):
         # Convert to two-spaced indent, assuming all of the original code is
@@ -104,6 +125,9 @@ def process_files(fs, chdir="../src"):
     for fn in fs:
         header, text = process(readfile(chdir + "/" + fn))
         yield "\\header{%s}" % sanitize(fn)
+        header_text = make_header(header)
+        if header_text:
+            yield header_text
         yield "\n\\smallskip\\verb|" + text
         yield "\\egroup"
     yield "\\singlecolumn"
@@ -161,4 +185,6 @@ def preprocess(text):
     text = re.sub(r" */\*\*.*?\*/\n?", "", text, flags=re.DOTALL | re.MULTILINE)
     text = re.sub(r"\n? *///.*", "", text, flags=re.MULTILINE)
     return header, text
+
+
 main()
