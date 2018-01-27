@@ -26,6 +26,7 @@
 \advance\voffset by -50pt
 \advance\vsize by 150pt
 \parindent=0pt
+\input eplain
 
 % Calculates the character width of the actual font into \spacesize
 \def\calcchardimens{%
@@ -109,7 +110,7 @@
 \footline={}
 \headline={%
 	\vbox{%
-		\vskip -5pt
+		\vskip 5pt
 
 		\headlinefont
 		\special{color push rgb 0 0 0}%
@@ -141,3 +142,4 @@
 	\hcol{#1}%
 }
 
+\doublecolumns

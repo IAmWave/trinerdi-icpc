@@ -100,6 +100,7 @@ def process_files(fs, chdir="../src"):
         text = process(readfile(chdir + "/" + fn))
         yield "\n\\smallskip\\verb|" + text
         yield "\\egroup"
+    yield "\\singlecolumn"
     yield "\\bye"
 
 
