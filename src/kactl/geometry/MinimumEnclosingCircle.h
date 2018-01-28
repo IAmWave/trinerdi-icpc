@@ -4,7 +4,7 @@
  * License: CC0
  * Source: NAPC 2017 solution presentation
  * Description: Computes the minimum circle that encloses a set of points.
- * Time: expected $O(n)$
+ * Time: Expected $O(N)$
  * Status: fuzz-tested
  */
 #pragma once

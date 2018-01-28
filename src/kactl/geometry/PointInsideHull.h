@@ -3,10 +3,9 @@
  * Date: 2017-04-13
  * License: CC0
  * Source: Inspired by old, broken tinyKACTL
- * Description: Determine whether a point t lies inside a given polygon (counter-clockwise order).
+ * Description: Determine whether a point $t$ lies inside a given polygon (counter-clockwise order).
  *  The polygon must be such that every point on the circumference is visible from the first point in the vector.
  *  It returns 0 for points outside, 1 for points on the circumference, and 2 for points inside.
- * Usage:
  * Status: Tested at Moscow ICPC pre-finals workshop
  * Time: $O(\log N)$
  */

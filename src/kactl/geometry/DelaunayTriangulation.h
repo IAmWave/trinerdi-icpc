@@ -6,7 +6,7 @@
  *  Each circumcircle contains none of the input points.
  *  If any three points are colinear or any four are on the same circle, behavior is undefined.
  * Status: fuzz-tested
- * Time: $O(n^2)$
+ * Time: $O(N^2)$
  */
 #pragma once
 

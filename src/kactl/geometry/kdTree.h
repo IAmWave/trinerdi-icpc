@@ -2,7 +2,7 @@
  * Author: Stanford
  * Date: Unknown
  * Source: Stanford Notebook
- * Description: KD-tree (2d, can be extended to 3d)
+ * Description: KD-tree (2D, can be extended to 3D)
  * Status: Untested, but works for Stanford
  */
 #pragma once

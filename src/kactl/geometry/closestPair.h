@@ -1,8 +1,9 @@
 /**
  * Author: Per Austrin, Max Bennedich, Gunnar Kreitz
  * Date: 2004-03-15
- * Description: $i1$, $i2$ are the indices to the closest pair of points in the point vector $p$ after the call. The distance is returned.
- * Time: $O(n \log n)$
+ * Description: $i_1$, $i_2$ are the indices to the closest pair of points in the point vector $p$
+ *  after the call. The distance is returned.
+ * Time: $O(N \log N)$
  */
 #pragma once
 

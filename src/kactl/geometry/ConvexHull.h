@@ -17,8 +17,8 @@
  * Usage:
  * 	vector<P> ps, hull;
  *  for(auto& i : convexHull(ps)) hull.push_back(ps[i]);
- * Time: $O(n \log n)$
-*/
+ * Time: $O(N \log N)$
+ */
 #pragma once
 
 #include "Point.h"

@@ -4,8 +4,7 @@
  * License: CC0
  * Source:
  * Description: Class to handle points in 3D space.
- * 	T can be e.g. double or long long.
- * Usage:
+ * 	{\tt T} can be e.g. double or long long.
  * Status: tested, except for phi and theta
  */
 #pragma once
