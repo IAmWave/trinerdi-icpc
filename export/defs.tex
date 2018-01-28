@@ -153,4 +153,16 @@
 \global\usagedimen=\wd\usagebox
 }
 
+% Hotfixes for latex expressions in kactl
+\def\mathbb{}
+\def\text{\hbox}
+\def\textrm#1{\hbox{\rm #1}}
+\def\texttt#1{\hbox{\tt #1}}
+\def\mathtt{}
+\def\mod{\bmod}
+\def\emph#1{{\it #1\/}}
+\def\textbf#1{{\bf #1}}
+\def\binom#1#2{{#1\choose #2}}
+\def\frac#1#2{{#1\over #2}}
+
 \doublecolumns
