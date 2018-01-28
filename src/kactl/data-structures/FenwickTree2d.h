@@ -3,7 +3,7 @@
  * Date: 2017-05-11
  * License: CC0
  * Source: folklore
- * Description: Computes sums $a[i..j]$ for all $i<I$, $j<J$, and increases single elements $a[i..j]$.
+ * Description: Computes sums $a[i\ldots j]$ for all $i<I$, $j<J$, and increases single elements $a[i\ldots j]$.
  *  Requires that the elements to be updated are known in advance
  *  (call {\tt fakeUpdate()} before {\tt init()}).
  * Time: $O(\log^2 N)$. (Use persistent segment trees for $O(\log N)$.)

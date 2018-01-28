@@ -4,7 +4,7 @@
  * License: CC0
  * Source: folklore
  * Description: Zero-indexed max-tree. Bounds are inclusive to the left and exclusive to the right.
- *  Can be changed by modifying $T$, $LOW$ and $f$.
+ *  Can be changed by modifying {\tt T}, {\tt LOW} and {\tt f}.
  * Time: $O(\log N)$.
  */
 #pragma once

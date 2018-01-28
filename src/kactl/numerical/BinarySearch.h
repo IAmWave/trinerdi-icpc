@@ -4,7 +4,7 @@
  * License: CC0
  * Source: Common sense
  * Description: Finds a zero point of f on the interval $[a, b]$. $f(a)$ must be less than 0
- *  and $f(b)$ greater than 0. Useful for solving equations like $kx=sin(x)$ as in the example below.
+ *  and $f(b)$ greater than 0. Useful for solving equations like $kx=\sin(x)$ as in the example below.
  * Status: tested
  * Usage:
  *  double func(double x) { return .23*x-sin(x); }

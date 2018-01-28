@@ -3,9 +3,9 @@
  * Date: 2016-03-22
  * License: CC0
  * Source: hacKIT, NWERC 2015
- * Description: A set (not multiset!) with support for finding the $n$-th
+ * Description: A set (not multiset!) with support for finding the $k$-th
  *  element, and finding the index of an element.
- * Time: $O(\log N)$
+ * Time: $O(\log N)$ % TODO: with what constant?
  */
 #pragma once
 
