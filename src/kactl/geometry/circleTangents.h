@@ -5,6 +5,7 @@
  * Source:
  * Description:%\\
  *  %\begin{minipage}{75mm}
+ *  \figure{kactl/geometry/circleTangents.pdf}
  *  Returns a pair of the two points on the circle with radius $r$ centered around $c$ whose tangent
  *  lines intersect $p$. If $p$ lies within the circle, NaN-points are returned.
  *  {\tt P} is intended to be {\tt Point<double>}. The first point is the one to the right

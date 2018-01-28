@@ -5,6 +5,7 @@
  * Source:
  * Description:
  *  %\begin{minipage}{75mm}
+ *  \figure{kactl/geometry/SegmentDistance.pdf}
  *  Returns the shortest distance between point $p$ and the line segment from point $s$ to $e$.
  *  %\end{minipage}
  *  %\begin{minipage}{15mm}

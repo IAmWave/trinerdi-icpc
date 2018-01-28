@@ -5,6 +5,7 @@
  * Source: http://en.wikipedia.org/wiki/Circumcircle
  * Description:%\\
  *  %\begin{minipage}{75mm}
+ *  \figure{kactl/geometry/circumcircle.pdf}
  *  The circumcirle of a triangle is the circle intersecting all three vertices.
  *  {\tt ccRadius()} returns the radius of the circle going through points $A$, $B$ and $C$
  *  and {\tt ccCenter()} returns the center of the same circle.

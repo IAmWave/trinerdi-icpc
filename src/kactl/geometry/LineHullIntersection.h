@@ -5,12 +5,10 @@
  * Source: thin air
  * Description: Line-convex polygon intersection. The polygon must be ccw and have no colinear points.
  *  {\tt isct(a,b)} returns a pair describing the intersection of a line with the polygon:
- *  %\begin{itemize*}
- *  %  \item $(-1, -1)$ if no collision,
- *  %  \item $(i, -1)$ if touching the corner $i$,
- *  %  \item $(i, i)$ if along side $(i, i+1)$,
- *  %  \item $(i, j)$ if crossing sides $(i, i+1)$ and $(j, j+1)$.
- *  %\end{itemize*}
+ *  \item{--} $(-1, -1)$ if no collision,
+ *  \item{--} $(i, -1)$ if touching the corner $i$,
+ *  \item{--} $(i, i)$ if along side $(i, i+1)$,
+ *  \item{--} $(i, j)$ if crossing sides $(i, i+1)$ and $(j, j+1)$.
  *  In the last case, if a corner $i$ is crossed, this is treated as happening on side $(i, i+1)$.
  *  The points are returned in the same order as the line hits the polygon.
  * Status: fuzz-tested

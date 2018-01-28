@@ -5,6 +5,7 @@
  * Source: Basic algorithm knowledge
  * Description:
  *  %\\\begin{minipage}{75mm}
+ *  \figure{kactl/geometry/ConvexHull.pdf}
  *  Returns a vector of indices of the convex hull in counter-clockwise order.
  *  Points on the edge of the hull between two other points are not considered part of the hull.
  *  %\end{minipage}

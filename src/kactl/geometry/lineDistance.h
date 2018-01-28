@@ -5,6 +5,7 @@
  * Source: Basic math
  * Description:
  *  %\begin{minipage}{75mm}
+ *  \figure{kactl/geometry/lineDistance.pdf}
  *  Returns the signed distance between point $p$ and the line containing points $a$ and $b$.
  *  Positive value on left side and negative on right as seen from $a$ towards $b$.
  *  $a=b$ gives NaN. {\tt P} is supposed to be {\tt Point<T>} or {\tt Point3D<T>}

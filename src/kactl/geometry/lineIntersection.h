@@ -5,6 +5,7 @@
  * Source:
  * Description:
  *  %\begin{minipage}{75mm}
+ *  \figure{kactl/geometry/lineIntersection.pdf}
  *  If a unique intersection point of the lines going through $s_1,e_1$ and $s_2,e_2$ exists,
  *  $r$ is set to this point and 1 is returned. If no intersection point exists 0 is returned
  *  and if infinitely many exists $-1$ is returned. If $s_1=e_1$ or $s_2=e_2$, then $-1$ is returned.

@@ -165,4 +165,14 @@
 \def\binom#1#2{{#1\choose #2}}
 \def\frac#1#2{{#1\over #2}}
 
+\def\img#1#2{%
+	\XeTeXpdffile ../src/#2 width #1\relax
+}
+
+\def\centerpic#1#2{\par\line{\hss\img{#1}{#2}\hss}\par}
+% TODO: Implement text wrapping in \rightpic
+%\def\rightpic#1#2{\par\line{\hss\img{#1}{#2}}\par}
+\let\rightpic\centerpic
+\def\figure#1{\rightpic{.2\hsize}{#1}}
+
 \doublecolumns

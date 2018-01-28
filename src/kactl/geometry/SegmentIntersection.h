@@ -5,6 +5,7 @@
  * Source:
  * Description:
  *  %\begin{minipage}{75mm}
+ *  \figure{kactl/geometry/SegmentIntersection.pdf}
  *  If a unique intersection point between the line segments $s_1\text{---}e_1$ and $s_2$\text{---}$e_2$
  *  exists $r_1$ is set to this point and 1 is returned.
  *  If no intersection point exists 0 is returned and if infinitely many exists 2 is returned
