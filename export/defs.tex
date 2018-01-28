@@ -44,7 +44,7 @@
 	\catcode`\}=2%
 	\gdef\{{\char123\relax}%
 	\gdef\}{\char125\relax}%
-	\gdef\b##1##2{\char92\relax##2}% Backspace
+	\gdef\\##1{\char92\relax##1}% Backspace
 }
 
 % Internal macro which sets up the environment for code listing mode
@@ -129,7 +129,7 @@
 	{%
 	\headerfont
 	\vskip 15pt plus 3pt minus 8pt
-	\penalty -5000
+	\penalty -1000
 	#1
 	\endgraf
 	\penalty 5000

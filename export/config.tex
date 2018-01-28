@@ -24,7 +24,10 @@
 	\baselineskip=8.5pt%
 }
 
-\font\tentt=\monofont, \serifsize!%
+% Not serifsize, because the two fonts look different-sized when equal sizes
+% are chosen
+\font\tentt=\monofont, \fontsize!%
+\def\tt{\tentt}
 
 % Colours
 \def\typ{\col{0 0 .5}\bf}   % type definition

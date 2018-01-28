@@ -76,6 +76,13 @@ def highlight(text):
     return "".join(l)
 
 
+def highlight_and_texify(text):
+    for i in [("\\", "\\\\"), ("{", "\\{"), ("}", "\\}"), ("\n\\}\n\n", "\n\\}\n\\greatsk\n"), ("\n\n", "\n\\sk\n")]:
+        text = text.replace(i[0], i[1])
+
+    return highlight(text)
+
+
 def make_header(header):
     """Extracts relevant information from the header, returns TeX code."""
     def texify(text):
@@ -93,7 +100,7 @@ def make_header(header):
         if h in header:
             if h == "Usage":
                 # TODO: quite a hack
-                l.append("{\\leftskip=\\usagedimen\\item{\\bf Usage:}\\simpleverb|%s\\egroup\\par}" % highlight(header[h]))
+                l.append("{\\leftskip=\\usagedimen\\item{\\bf Usage:}\\raggedright\\simpleverb|%s\\egroup\\par}" % highlight_and_texify(header[h]))
             else:
                 l.append("{\\bf %s:} %s" % (h, texify(header[h])))
 
@@ -113,10 +120,7 @@ def process_file(f, chdir="../src"):
         header, text = preprocess(text)
         text = re.sub("^ +$", "", text)
         checksums = [checksum(line) for line in text.split("\n")] + [""]
-        for i in [("\\", "\\b "), ("{", "\\{"), ("}", "\\}"), ("\n\\}\n\n", "\n\\}\n\\greatsk\n"), ("\n\n", "\n\\sk\n")]:
-            text = text.replace(i[0], i[1])
-
-        highlighted = highlight(text)
+        highlighted = highlight_and_texify(text)
 
         def puttogether(hash, line):
             return "\\h{%s}  %s" % (hash, line) if hash else line
@@ -191,6 +195,7 @@ def preprocess(text):
     # Remove /** ... */ and /// ... comments (including excess whitespace that could remain)
     text = re.sub(r" */\*\*.*?\*/\n?", "", text, flags=re.DOTALL | re.MULTILINE)
     text = re.sub(r"\n? *///.*", "", text, flags=re.MULTILINE)
+    text = re.sub(r"^\s*\#pragma once", "", text, flags=re.DOTALL).strip()
     return header, text
 
 
