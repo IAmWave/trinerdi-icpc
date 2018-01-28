@@ -1,7 +1,7 @@
 /**
  * Author: David Rydh, Per Austrin
  * Date: 2003-03-16
- * Description:
+ * Description: A struct for operating on polynomials.
  */
 #pragma once
 
@@ -13,7 +13,7 @@ struct Polynomial {
 		for(int i = n; i >= 0; --i) (val *= x) += a[i];
 		return val;
 	}
-	void diff() {
+	void derivative() {
 		rep(i,1,n+1) a[i-1] = i*a[i];
 		a.pop_back(); --n;
 	}

@@ -5,11 +5,14 @@
  * Source:
  * Description:
  *  %\begin{minipage}{75mm}
- *  If a unique intersection point between the line segments going from s1 to e1 and from s2 to e2 exists r1 is set to this point and 1 is returned.
- *  If no intersection point exists 0 is returned and if infinitely many exists 2 is returned and r1 and r2 are set to the two ends of the common line.
- *  The wrong position will be returned if P is Point<int> and the intersection point does not have integer coordinates.
+ *  If a unique intersection point between the line segments $s_1\text{---}e_1$ and $s_2$\text{---}$e_2$
+ *  exists $r_1$ is set to this point and 1 is returned.
+ *  If no intersection point exists 0 is returned and if infinitely many exists 2 is returned
+ *  and $r_1$ and $r_2$ are set to the two ends of the common line.
+ *  The wrong position will be returned if {\tt P} is {\tt Point<int>}
+ *  and the intersection point does not have integer coordinates.
  *  Products of three coordinates are used in intermediate steps so watch out for overflow if using int or long long.
- *  Use segmentIntersectionQ to get just a true/false answer.
+ *  Use SegmentIntersectionQ to get just a true/false answer.
  *  %\end{minipage}
  *  %\begin{minipage}{15mm}
  *  %\includegraphics[width=\textwidth]{../content/geometry/SegmentIntersection}

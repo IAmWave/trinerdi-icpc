@@ -4,13 +4,13 @@
  * License: CC0
  * Source: marian's (TC) code
  * Description: Aho-Corasick tree is used for multiple pattern matching.
- *  Initialize the tree with create(patterns). find(word) returns for each position
- *  the index of the longest word that ends there, or -1 if none. findAll(\_, word) finds all words
+ *  Initialize the tree with {\tt create(patterns)}. {\tt find(word)} returns for each position
+ *  the index of the longest word that ends there, or -1 if none. {\tt findAll(\_, word)} finds all words
  *  (up to $N \sqrt N$ many if no duplicate patterns) that start at each position (shortest first).
  *  Duplicate patterns are allowed; empty patterns are not.
  *  To find the longest words that start at each position, reverse all input.
  * Time: Function create is $O(26N)$ where $N$ is the sum of length of patterns.
- *  find is $O(M)$ where $M$ is the length of the word. findAll is $O(NM)$.
+ *  find is $O(M)$ where $M$ is the length of the word. {\tt findAll} is $O(NM)$.
  * Status: lightly tested
  */
 #pragma once

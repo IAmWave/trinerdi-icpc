@@ -4,8 +4,8 @@
  * License: CC0
  * Description: Finds the longest common subsequence.
  * Status: Tested on hackerrank, the longest common subsequence
- * Time: $O(nm)$ where n and m are the lengths of the sequences.
- * Memory: $O(nm)$.
+ * Time: $O(NM)$, where $N$ and $M$ are the lengths of the sequences.
+ * Memory: $O(NM)$.
  */
 #pragma once
 

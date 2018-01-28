@@ -5,7 +5,7 @@
  * Source: Folklore
  * Status: Somewhat tested
  * Description: Lowest common ancestor. Finds the lowest common
- *  ancestor in a tree (with 0 as root). C should be an adjacency list of the tree,
+ *  ancestor in a tree (with 0 as root). $C$ should be an adjacency list of the tree,
  *  either directed or undirected.
  *  Can also find the distance between two nodes.
  * Usage:

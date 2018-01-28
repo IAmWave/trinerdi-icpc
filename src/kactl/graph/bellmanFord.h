@@ -4,8 +4,8 @@
  * License: CC0
  * Source: http://en.wikipedia.org/wiki/Bellman-Ford_algorithm
  * Description: Calculates shortest path in a graph that might have negative edge distances.
- *  Propagates negative infinity distances (sets dist = -inf), and returns true
- *  if there is some negative cycle. Unreachable nodes get dist = inf.
+ *  Propagates negative infinity distances (sets $dist = -inf$), and returns true
+ *  if there is some negative cycle. Unreachable nodes get $dist = inf$.
  * Time: $O(EV)$
  * Status: Untested
  */

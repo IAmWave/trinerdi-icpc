@@ -3,7 +3,7 @@
  * Date: 2009-10-26
  * License: CC0
  * Source: folklore
- * Description: Disjoint-set data structure.
+ * Description: Disjoint-set data structure. Can also get size of an element's component.
  * Time: $O(\alpha(N))$
  */
 #pragma once

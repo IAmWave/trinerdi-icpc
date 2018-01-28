@@ -5,8 +5,8 @@
  * Source: Folklore
  * Status: Tested at Petrozavodsk
  * Description: Range Minimum Queries on an array. Returns
- *  min(V[a], V[a + 1], ... V[b - 1]) in constant time. 
- *  Set inf to something reasonable before use.
+ *  $min(V[a],...,V[b-1])$ in constant time. 
+ *  Set $inf$ to something reasonable before use.
  * Usage:
  *  RMQ rmq(values);
  *  rmq.query(inclusive, exclusive);

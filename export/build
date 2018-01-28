@@ -86,7 +86,7 @@ def make_header(header):
         return text
 
     # Other keywords are silently discarded
-    keywords = ["Time", "Memory", "Description", "Usage"]
+    keywords = ["Description", "Time", "Memory", "Usage"]
 
     l = []
     for h in keywords:

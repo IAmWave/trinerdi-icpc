@@ -15,7 +15,7 @@ void poly_roots(const Polynomial& p, double xmin, double xmax, vector<double>& r
 	if (p.n == 1) { roots.push_back(-p.a.front()/p.a.back()); }
 	else {
 		Polynomial d = p;
-		d.diff();
+		d.derivative();
 		vector<double> dr;
 		poly_roots(d, xmin, xmax, dr);
 		dr.push_back(xmin-1);

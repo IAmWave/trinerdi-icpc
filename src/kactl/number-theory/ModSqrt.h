@@ -4,7 +4,7 @@
  * License: CC0
  * Source: http://eli.thegreenplace.net/2009/03/07/computing-modular-square-roots-in-python/
  * Description: Tonelli-Shanks algorithm for modular square roots.
- * Time: $O(\log^2 p) worst case, often O(\log p)$
+ * Time: $O(\log^2 p)$ worst case, often $O(\log p)$
  * Status: Tested for all a,p <= 10000
  */
 #pragma once

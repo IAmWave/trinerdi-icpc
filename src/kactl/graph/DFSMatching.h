@@ -10,7 +10,7 @@
  *  If you want to get the matched pairs, $match[i]$ contains
  *  match for vertex $i$ on the right side or $-1$ if it's not
  *  matched.
- * Time: $O(EV)$ where $E$ is the number of edges and V is the number of vertices.
+ * Time: $O(EV)$
  * Status: works
  */
 #pragma once
