@@ -3,7 +3,7 @@
  * Date: 2016-09-24
  * Source: SegmentIntersection.h
  * Description: Like segmentIntersection, but only returns true/false.
- * Products of three coordinates are used in intermediate steps so watch out for overflow if using int or long long.
+ *  Products of three coordinates are used in intermediate steps so watch out for overflow if using int or long long.
  * Status: Relatively well tested.
  */
 #pragma once

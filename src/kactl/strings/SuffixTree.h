@@ -3,9 +3,9 @@
  * Date: 2017-05-15
  * Source: https://e-maxx.ru/algo/ukkonen
  * Description: Ukkonen's algorithm for online suffix tree construction.
- *  Each node contains indices [l, r) into the string, and a list of child nodes.
- *  Suffixes are given by traversals of this tree, joining [l, r) substrings.
- *  The root is 0 (has l = -1, r = 0), non-existent children are -1.
+ *  Each node contains indices $[l, r)$ into the string, and a list of child nodes.
+ *  Suffixes are given by traversals of this tree, joining $[l, r)$ substrings.
+ *  The root is 0 (has $l = -1$, $r = 0$), non-existent children are -1.
  *  To get a complete tree, append a dummy symbol -- otherwise it may contain
  *  an incomplete path (still useful for substring matching, though).
  * Time: $O(26N)$
