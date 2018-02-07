@@ -1,15 +1,16 @@
 /**
  * Author: Vaclav Volhejn, based on Simon Lindholm's code
  * Description: Container where you can add lines of the form $kx+m$,
- *  and query maximum values at points $x$. Assumes that the $k$s of the added
- *  are non-decreasing. Use sorted_query for cases where $x$ is non-decreasing.
- * Time: amortized $O(1)$ per add and sorted_query, $O(\log n) per query$
+ *  and query maximum values at points $x$. Assumes that the $k$s of the added lines
+ *  are non-decreasing. Use \verb|sorted_query()} for cases where $x$ is non-decreasing.
+ * Time: amortized $O(1)$ per \verb|add()} and \verb|sorted_query()}, $O(\log n)$ per \verb|query()}
  */
 #include "../base.hpp"
 
 struct Line {
     mutable ll k, m, p; // p is the position from which the line is optimal
     ll val(ll x) const { return k*x + m; }
+    bool operator<(const Line& o) const { return p < o.p; }
 };
 ll floordiv (ll a, ll b) {
     return a / b - ((a^b) < 0 && a % b);
@@ -34,16 +35,7 @@ struct LineContainer : vector<Line> {
 
     ll query(ll x) {
         assert(!empty());
-        int fr = 0, to = size()-1;
-        ll best = -1;
-        while(fr<=to) {
-            int mid = (fr+to)/2;
-            if ((*this)[mid].p <= x) {
-                fr = mid + 1;
-                best = (*this)[mid].val(x);
-            } else to = mid - 1;
-        }
-        return best;
+        return (--upper_bound(begin(), end(), Line({0,0,x})))->val(x);
     }
 
     int qi = 0;
