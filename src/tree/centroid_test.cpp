@@ -1,6 +1,14 @@
 #include "centroid.cpp"
 #include "gtest/gtest.h"
 
+vector<int> example_decompose(Graph &G) {
+	int n = G.size();
+	counts = {};
+	counts.resize(n);
+	decompose(G, 0);
+	return counts;
+}
+
 Graph gen_tree(int n, int mode) {
 	Graph G(n);
 	rep(i, 1, n) {
@@ -47,7 +55,7 @@ TEST(FIND, OneOrTwo) {
 }
 
 TEST(FIND, CountsAll) {
-	int runs = 300, size = 300;
+	int runs = 50, size = 100;
 	rep(i, 0, runs) {
 		Graph G = gen_tree(size);
 		EXPECT_EQ(_find_centroid(G, rand() % size, -1, 0).first, size);
@@ -55,7 +63,7 @@ TEST(FIND, CountsAll) {
 }
 
 TEST(FIND, AlwaysExists) {
-	int runs = 300, size = 300;
+	int runs = 50, size = 100;
 	rep(i, 0, runs) {
 		Graph G = gen_tree(size);
 		int c = find_centroid(G, rand() % size);
@@ -74,7 +82,7 @@ int sub_size(Graph &G, int v, int father)
 }
 
 TEST(FIND, AlwaysACentroid) {
-	int runs = 300, size = 300;
+	int runs = 100, size = 100;
 	rep(i, 0, runs) {
 		Graph G = gen_tree(size);
 		int c = find_centroid(G, rand() % size);
@@ -99,7 +107,7 @@ vector<int> deg(Graph G) {
 }
 
 TEST(DECOMPOSE, PreservesDegree) {
-	int runs = 100, size = 10;
+	int runs = 30, size = 30;
 	rep(i, 0, runs) {
 		Graph G = gen_tree(size);
 		vector<int> pre = deg(G);
@@ -110,7 +118,7 @@ TEST(DECOMPOSE, PreservesDegree) {
 }
 
 TEST(DECOMPOSE, PreservesEdges) {
-	int runs = 100, size = 100;
+	int runs = 30, size = 30;
 	rep(i, 0, runs) {
 		Graph G = gen_tree(size);
 		Graph F = G;
@@ -126,7 +134,7 @@ TEST(DECOMPOSE, PreservesEdges) {
 }
 
 TEST(DECOMPOSE, CalculatesCorrectly) {
-	int runs = 100, size = 100;
+	int runs = 30, size = 30;
 	rep(i, 0, runs) {
 		Graph G = gen_tree(size);
 		vector<int> degs = deg(G);

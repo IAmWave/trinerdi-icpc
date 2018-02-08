@@ -27,6 +27,7 @@ set(SOURCES_LIST
     tree/heavylight
     tree/heavylight2
     segtree/persistent_segtree
+    data_structures/fast_line_container
     string/aho_corasick
 )
 

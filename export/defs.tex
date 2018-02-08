@@ -1,28 +1,50 @@
-\newbox\spacebox % Used to meaśure character width
+\newbox\charbox % Used to meaśure character width
+\newdimen\charwidth
+\newdimen\charheight
 
 \def\dofont#1, #2!{"#1" at #2\relax}
 \newdimen\fontsize
+\newdimen\serifsize
+\newdimen\scriptsize
+\newdimen\scriptscriptsize
 
 \input config
 
+\seriffam
 \rm
 
-\advance\hoffset by -25pt
-\advance\hsize by 25pt
-\advance\voffset by -5pt
-\advance\vsize by 80pt
+% Scale some of the maths fonts down (use 7pt as a base size, not 10). Not all
+% fonts are redefined, but it should be enough for normal usage. Add new
+% definitions (\subscriptfont, \*font4 -- \*font15) when needed.
+\textfont0=\tenrm \scriptfont0=\sevenrm
+\textfont1=\teni \scriptfont1=\seveni
+\textfont2=\tensy \scriptfont2=\sevensy
+\textfont3=\tenex \scriptfont3=\sevenex
+
+\advance\hoffset by -45pt
+\advance\hsize by 90pt
+\advance\voffset by -50pt
+\advance\vsize by 150pt
 \parindent=0pt
+\input eplain
+
+% Calculates the character width of the actual font into \spacesize
+\def\calcchardimens{%
+	\setbox\charbox=\hbox{(}%
+	\charwidth=\wd\charbox
+	\charheight=\ht\charbox
+}
 
 % Defines special escape sequences that print {, }, \ when used in monospace
 \def\makeprintable{%
-	\def\do##1{\catcode`##1=12}
+	\def\do##1{\catcode`##1=12}%
 	\dospecials
-	\catcode`\\=0
-	\catcode`\{=1
-	\catcode`\}=2
-	\gdef\{{\char123\relax}
-	\gdef\}{\char125\relax}
-	\gdef\b##1##2{\char92\relax##2} % Backspace
+	\catcode`\\=0%
+	\catcode`\{=1%
+	\catcode`\}=2%
+	\gdef\{{\char123\relax}%
+	\gdef\}{\char125\relax}%
+	\gdef\\##1{\char92\relax##1}% Backspace
 }
 
 % Internal macro which sets up the environment for code listing mode
@@ -32,31 +54,42 @@
 	%
 	% Allow long lines to break, let them have less \baselineskip (optically),
 	% indent line continuations
-	\baselineskip=1.1\fontsize\relax
-	\parskip=1pt plus .1pt minus .1pt
-	\rightskip=0pt plus 1fill
-	\leftskip=100pt
-	\parindent=-\leftskip
-	%
-	\setspace
-	\obeyspaces\obeylines
+	\baselineskip=1\fontsize\relax%
+	\parskip=1.7pt plus .1pt minus .1pt%
+	\rightskip=0pt plus 1fill%
+	\leftskip=100pt%
+	\parindent=-\leftskip%
+	\setsimpleverb
+}
+
+% Simplified version used for short code snippets
+\def\setsimpleverb{%
+	\monofam\rm
+	\makeprintable
+	\setspace\obeyspaces\obeylines%
 }
 
 % Set up fixed spaces, define tab as four spaces
 {%
- \catcode`\^^I=13\catcode`\ =13
- \gdef\setspace{%
-  \catcode`\^^I=13\catcode`\ =13
-  \setbox\spacebox=\hbox{a}%
-  \def {\hskip\wd\spacebox\relax}%
-  \def^^I{    }%
- }%
+ \catcode`\^^I=13\catcode`\ =13%
+ \gdef\setspace{\catcode`\^^I=13\catcode`\ =13%
+ \def {\calcchardimens\hskip\charwidth\relax}\def^^I{    }%
+}%
 }
 
+% TODO: think of some better delimiter than |, try to make { work (\verb|hello}
+% is way less cool than \verb{hello})
+
 % Sets up the verbatim environment, end with \egroup
-\def\verb{%
+\def\verb|{%
 	\bgroup
-	\setverb
+	\setverb%
+}
+
+% Sets up a simplfied verbatim environment, end with \egroup
+\def\simpleverb|{%
+	\bgroup
+	\setsimpleverb%
 }
 
 % \col{rgb color}{font}{content}
@@ -71,13 +104,13 @@
 
 % Blank lines: we want to encourage page breaks here
 % These macros are inserted automatically by the source code preprocessor
-\def\sk{\penalty -500} % regular
-\def\greatsk{\penalty -3000} % after a function definition (after non-indented "}")
+\def\sk{\penalty -500\vskip -.5\charheight plus .5\charheight} % regular
+\def\greatsk{\penalty -1000\vskip 0pt plus .5\charheight} % after a function definition (after non-indented "}")
 
 \footline={}
 \headline={%
 	\vbox{%
-		\vskip -5pt
+		\vskip 5pt
 
 		\headlinefont
 		\special{color push rgb 0 0 0}%
@@ -96,11 +129,52 @@
 	{%
 	\headerfont
 	\vskip 15pt plus 3pt minus 8pt
-	\penalty -5000
+	\penalty -1000
 	#1
 	\endgraf
 	\penalty 5000
 	}%
 }
 
-\makeprintable
+% Used to print a hash at the beggining of a line
+\def\h#1{%
+	\calcchardimens\hskip-4\charwidth
+	\hcol{#1}%
+}
+
+\def\O{{\cal O}}
+
+% TODO: quite a hack
+\newbox\usagebox
+\newdimen\usagedimen
+{
+\seriffam\bf
+\setbox\usagebox=\hbox{Usage: }
+\global\usagedimen=\wd\usagebox
+}
+
+% Hotfixes for latex expressions in kactl
+\def\mathbb{}
+\def\text{\hbox}
+\def\textrm#1{\hbox{\rm #1}}
+\def\texttt#1{\hbox{\tt #1}}
+\def\mathtt{}
+\def\mod{\bmod}
+\def\emph#1{{\it #1\/}}
+\def\textbf#1{{\bf #1}}
+\def\binom#1#2{{#1\choose #2}}
+\def\frac#1#2{{#1\over #2}}
+
+\input headers
+
+\def\img#1#2{%
+	\XeTeXpdffile ../src/#2 width #1\relax
+}
+
+\def\centerpic#1#2{\par\line{\hss\img{#1}{#2}\hss}\par}
+% TODO: Implement text wrapping in \rightpic
+%\def\rightpic#1#2{\par\line{\hss\img{#1}{#2}}\par}
+\let\rightpic\centerpic
+\def\figure#1{\rightpic{.2\hsize}{#1}}
+
+\doublecolumns
