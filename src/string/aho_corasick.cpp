@@ -1,3 +1,14 @@
+/**
+ * Author: Richard Hladík
+ * Description: A (non-compressed) trie implementation and the Aho-Corasick
+ *  algorithm. \verb|occurence(i, id)} is called every time there is an
+ *  occurence of the needle with id {\tt id} ending at position $i$.
+ * Time: $O(S + J + V)$, where $S$ is the length of the haystack, $J$ sum of
+ *  the needles' lengths and $V$ is the total number of occurences.
+ * Usage: string s = "cococonut";
+ *  vector<string> n = {"coc", "con"};
+ *  AC(s, n);
+ */
 #include "../base.hpp"
 
 inline int normalize(char c) { return c - 'a'; }
