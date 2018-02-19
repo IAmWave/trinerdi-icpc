@@ -2,7 +2,9 @@
  * Author: Richard Hladík
  * Description: A (non-compressed) trie implementation and the Aho-Corasick
  *  algorithm. \verb|occurence(i, id)} is called every time there is an
- *  occurence of the needle with id {\tt id} ending at position $i$.
+ *  occurence of the needle with id {\tt id} ending at position $i$. Works with
+ *  [a-z] by default, change {\tt normalize} to use a different alphabet.
+ *  Maximum supported alphabet size is 64.
  * Time: $O(S + J + V)$, where $S$ is the length of the haystack, $J$ sum of
  *  the needles' lengths and $V$ is the total number of occurences.
  * Usage: string s = "cococonut";
@@ -12,7 +14,6 @@
 #include "../base.hpp"
 
 inline int normalize(char c) { return c - 'a'; }
-inline int countBits(int a) { return __builtin_popcount(a); }
 void occurence(int i, int id);
 
 struct Trie {
@@ -20,15 +21,15 @@ struct Trie {
 	vector <Trie *> sons = {};  // sorted in alphabetical order
 	int end_of = -1;  // index of the needle ending here or -1
 	Trie *back = NULL, *output = NULL;  // edges
-	char letter = '\0';  // the letter on the edge from parent to here
+	char letter = '\0';  /// the letter on the edge from parent to here
 
 	Trie (char c) : letter(c) {}
 	~Trie() { for (auto a: sons) delete a; }
-	inline bool hasChild(char c) { return bitmask & (1 << normalize(c)); }
-	inline int childIndex(char c) { return countBits(bitmask % (1 << normalize(c))); }
+	inline bool hasChild(char c) { return bitmask & (1LL << normalize(c)); }
+	inline int childIndex(char c) { return __builtin_popcountll(bitmask & ((1LL << normalize(c))-1)); }
 	inline void createChild(char c) {
 		sons.insert(sons.begin() + childIndex(c), new Trie(c));  // maintain ordering
-		bitmask |= (1 << normalize(c));
+		bitmask |= (1LL << normalize(c));
 	}
 	Trie *childNode(char c) {
 		if (!hasChild(c))  createChild(c);
