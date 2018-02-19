@@ -2,9 +2,9 @@
  * Author: Richard Hladík
  * Description: A (non-compressed) trie implementation and the Aho-Corasick
  *  algorithm. \verb|occurence(i, id)} is called every time there is an
- *  occurence of the needle with id {\tt id} ending at position $i$. Works with
- *  [a-z] by default, change {\tt normalize} to use a different alphabet.
- *  Maximum supported alphabet size is 64.
+ *  occurence of the needle with id {\tt id} ending at position $i$. The
+ *  needles must be unique. Works with [a-z] by default, change {\tt normalize}
+ *  to use a different alphabet. Maximum supported alphabet size is 64.
  * Time: $O(S + J + V)$, where $S$ is the length of the haystack, $J$ sum of
  *  the needles' lengths and $V$ is the total number of occurences.
  * Usage: string s = "cococonut";
@@ -18,7 +18,7 @@ void occurence(int i, int id);
 
 struct Trie {
 	ll bitmask = 0;  // i-th bit is set IFF there is an edge "'a' + i"
-	vector <Trie *> sons = {};  // sorted in alphabetical order
+	vector <Trie *> sons;  // sorted in alphabetical order
 	int end_of = -1;  // index of the needle ending here or -1
 	Trie *back = NULL, *output = NULL;  // edges
 	char letter = '\0';  /// the letter on the edge from parent to here
@@ -37,7 +37,7 @@ struct Trie {
 	}
 };
 
-Trie *ACStep(Trie *state, char c) {
+Trie *acStep(Trie *state, char c) {
 	while (state->back && !state->hasChild(c))
 		state = state->back;
 	return (state->hasChild(c)) ? state->childNode(c) : state;
@@ -53,12 +53,12 @@ Trie *constructAC(vector<string> words) {
 	Trie *root = new Trie('\0');
 	rep(i, 0, words.size()) insert(root, words[i], i);
 
-	queue<pair<Trie *, Trie*>> q;
+	queue<pair<Trie *, Trie *>> q;
 	for (auto s : root->sons)  q.push({s, root});
 	while (q.size()) {
 		Trie *state, *parent;
 		tie(state, parent) = q.front(); q.pop();
-		state->back = (parent != root) ? ACStep(parent->back, state->letter) : root;
+		state->back = (parent != root) ? acStep(parent->back, state->letter) : root;
 		state->output = (state->back->end_of >= 0) ? state->back : state->back->output;
 		for (auto next : state->sons)
 			q.push({next, state});
@@ -67,10 +67,10 @@ Trie *constructAC(vector<string> words) {
 	return root;
 }
 
-void AC(string str, vector<string> words) {
+void ac(string str, vector<string> words) {
 	Trie *state = constructAC(words);
 	rep(i, 0, str.size()) {
-		state = ACStep(state, str[i]);
+		state = acStep(state, str[i]);
 		for (Trie *p = state; p; p = p->output)
 			if (p->end_of >= 0)
 				occurence(i - words[p->end_of].size() + 1, p->end_of);

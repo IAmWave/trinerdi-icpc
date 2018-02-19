@@ -17,11 +17,9 @@ void occurence(int i, int index) {
 	se.insert({i, index});
 }
 
-bool matches(string hay, string needle, int start) {
-	rep(i, 0, needle.size())
-		if (hay[start + i] != needle[i])
-			return false;
-	return true;
+bool matches(const string &hay, const string &needle, int start) {
+	return start + needle.size() <= hay.size()
+	       && needle == hay.substr(start, needle.size());
 }
 
 TEST(AC, Valid) {
@@ -36,9 +34,9 @@ TEST(AC, Valid) {
 			n.push_back(a);
 
 		se = {};
-		AC(s, n);
+		ac(s, n);
 		rep(j, 0, n.size())
-			rep(k, 0, s.size() - n.size() + 1)
+			rep(k, 0, s.size())
 				EXPECT_EQ(matches(s, n[j], k), se.count({k, j}));
 	}
 }
