@@ -51,7 +51,4 @@ TEST(SET_TRICKS, Works) {
         EXPECT_EQ(best, closestLower(s, k));
         EXPECT_EQ(bestStrict, closestLowerStrict(s, k));
     }
-    rep(i,0,v.size()) {
-        EXPECT_EQ((i==0) ? (-INF) : v[i-1], closestLowerStrict(s, v[i]));
-    }
 }

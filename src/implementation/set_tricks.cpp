@@ -1,7 +1,7 @@
 /**
  * Author: Václav Volhejn
  * Description: Functions to get the closest lower element in a set.
- *  Given $S$, $k$, returns $\max \{x \in S; x \leq k\}$, or $-\infty$
+ *  Given $S$, $k$, returns $\max \{x \mid x \in S; x \leq k\}$, or $-\infty$
  *  if there is no suitable element. Strict version replaces $\leq$ with $<$.
  * Status: tested
  */
