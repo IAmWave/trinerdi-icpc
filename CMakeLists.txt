@@ -28,6 +28,7 @@ set(SOURCES_LIST
     tree/heavylight2
     segtree/persistent_segtree
     data_structures/fast_line_container
+    misc/set_tricks
 )
 
 foreach(CUR ${SOURCES_LIST})
