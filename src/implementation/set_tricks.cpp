@@ -6,15 +6,14 @@
  * Status: tested
  */
 #include "../base.hpp"
-typedef long long t;
-const t INF = 1e18;
+const ll INF = 1e18;
 
-t closestLower(set<t>& s, t k) {
+ll closestLower(set<ll>& s, ll k) {
     auto it = s.upper_bound(k);
     return (it == s.begin()) ? -INF : *(--it);
 }
 
-t closestLowerStrict(set<t>& s, t k) {
+ll closestLowerStrict(set<ll>& s, ll k) {
     auto it = s.lower_bound(k);
     return (it == s.begin()) ? -INF : *(--it);
 }

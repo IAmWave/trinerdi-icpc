@@ -29,7 +29,7 @@ set(SOURCES_LIST
     segtree/persistent_segtree
     data_structures/fast_line_container
     string/aho_corasick
-    misc/set_tricks
+    implementation/set_tricks
 )
 
 foreach(CUR ${SOURCES_LIST})
