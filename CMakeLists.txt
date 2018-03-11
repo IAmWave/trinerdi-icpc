@@ -29,6 +29,7 @@ set(SOURCES_LIST
     segtree/persistent_segtree
     data_structures/fast_line_container
     string/aho_corasick
+    implementation/compression
 )
 
 foreach(CUR ${SOURCES_LIST})
