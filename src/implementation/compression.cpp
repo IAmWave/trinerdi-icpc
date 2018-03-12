@@ -1,7 +1,7 @@
 /**
  * Author: Václav Volhejn
  * Description: Compress vector $v$ into $v'$ such that $v_i < v_j \iff v'_i < v'_j$
- *  and elements are integers bounded by $0 \leq w_i < |v|$. Mutates $v$.
+ *  and elements are integers bounded by $0 \leq v'_i < |v|$. Mutates $v$.
  * Status: tested
  * Usage:
  *  vector<ll> v = {6, 2, -3, 2};
