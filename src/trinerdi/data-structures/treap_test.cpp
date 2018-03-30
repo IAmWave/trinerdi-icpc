@@ -48,8 +48,7 @@ TEST(Treap, Split) {
         set<ll> values;
         rep(i, 0, 50) values.insert(rand());
         for (auto&x : v) values.insert(x);
-        for (auto&x : v) values.insert(x);
-        
+
         for (auto &splitval : values) {
             Treap* t = NULL;
             for (auto &x : v) insert(t, x);
@@ -74,15 +73,11 @@ TEST(Treap, Merge) {
     srand(128);
     rep(it, 0, 10) {
         vector<ll> v = genUnique(50);
-        vector<ll> vl, vr;
-        rep(i,0,v.size()) {
-            ((i*2 < v.size())?vl:vr).push_back(v[i]);
-        }
         Treap *tl = NULL, *tr = NULL;
-        for(auto& x : vl) insert(tl, x);
-        for(auto& x : vr) insert(tr, x);
+        rep(i,0,v.size()) {
+            insert((i*2 < v.size())?tl:tr, v[i]);
+        }
         Treap *tm = merge(tl, tr);
-        
         rep(i, 0, v.size()) {
             EXPECT_EQ(getKth(tm, i), v[i]);
         }
