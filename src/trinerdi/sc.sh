@@ -1,7 +1,7 @@
 alias t="basename \$(realpath .)" # Assumption: prints an alphanumeric string
 b(){
-	fl=-O2\ -fsanitize=address
-	[ a"$1" = a-d ] && fl=-g && v=valgrind
+	if [ "$1" = -d ]; then fl=-g; v=valgrind
+	else fl=-O2\ -fsanitize=address; v=; fi
 	g++ -std=c++11 -lm -Wall -Wno-sign-compare -Wshadow $fl `t`.cpp -o `t`
 	for i in `t`.in*; do echo $i:; $v ./`t` < $i; done
 }
