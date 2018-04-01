@@ -8,6 +8,6 @@ e(){ # run on [problem].in*
 create(){
 	for i in {a..z}; do  # Change z as needed
 		mkdir "$i" && cd "$i" || continue
-		cp -rn ../template.cpp "$i".cpp; touch "$i".in1; cd ..
+		cp -n ../template.cpp "$i".cpp; touch "$i".in1; cd ..
 	done
 }
