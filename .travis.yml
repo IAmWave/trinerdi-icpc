@@ -6,7 +6,7 @@ addons:
   apt:
     packages:
       - texlive-xetex
-      - texlive-fonts-recommended
+      - texlive-fonts-extra
 
 notifications:
   email: false
