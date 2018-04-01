@@ -6,4 +6,4 @@ addons:
   apt:
     packages:
       - texlive-xetex
-
+      - texlive-fonts-recommended
