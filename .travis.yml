@@ -7,3 +7,6 @@ addons:
     packages:
       - texlive-xetex
       - texlive-fonts-recommended
+
+notifications:
+  email: false
