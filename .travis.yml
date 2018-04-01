@@ -1,2 +1,9 @@
 language: cpp
 script: make test book
+
+sudo: required
+addons:
+  apt:
+    packages:
+      - texlive-xetex
+
