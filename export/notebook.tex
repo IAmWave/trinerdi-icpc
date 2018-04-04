@@ -2,45 +2,8 @@
 
 \input files
 
-[[base.hpp]]
-[[sc.sh]]
-[[fft/ntt.cpp]]
-[[fft/fft.cpp]]
-[[treap/treap.cpp]]
-[[numth/prime.cpp]]
-[[numth/misc.cpp]]
-[[numth/modeq.cpp]]
-[[import/numth/composite_comb.cpp]]
-[[import/numth/dlog.cpp]]
-%[[import/numth/gauss.cpp]] % -> [[kactl/numerical/SolveLinear.h]]
-[[flow/dinic.cpp]]
-%[[import/flow/minmax.cpp]] % -> [[kactl/graph/MinCostMaxFlow.h]]
-[[tree/centroid.cpp]]
-[[tree/heavylight2.cpp]]
-[[implementation/set_tricks.cpp]]
-[[implementation/compression.cpp]]
-%[[import/bipart/maxmatch.cpp]] % -> [[kactl/graph/DFSMatching.h]]
-%[[import/bipart/maxmatch2.cpp]] % -> [[kactl/graph/DFSMatching.h]]
-% [[import/geo/geo.cpp]] % -> KACTL geometry
-% [[import/geo/geo2.cpp]] % -> KACTL geometry
-% [[import/geo/geo3-plochy.cpp]] % -> KACTL geometry
-% [[import/geo/geo4-vzdialenosti.cpp]] % -> KACTL geometry
-% [[import/geo/geo5-kruhy.cpp]] % -> KACTL geometry
-% [[import/graph/bicon.cpp]] % -> [[kactl/graph/BiconnectedComponents.h]]
-% [[import/graph/dfu.cpp]] % -> [[kactl/data-structures/UnionFind.h]]
-% [[import/graph/strongcon.cpp]] % -> [[kactl/graph/SCC.h]]
-% [[import/stree/fenwick.cpp]] % -> [[kactl/data-structures/FenwickTree.h]]
-% [[import/stree/rich.cpp]]
-% [[import/text/kmp.cpp]] % -> [[kactl/strings/KMP.h]]
-% [[import/text/suf1.cpp]] % -> [[kactl/strings/SuffixArray.h]]
-% [[import/text/suf2.cpp]] % -> [[kactl/strings/SuffixArray.h]]
-% [[import/text/aho_corasick.cpp]] % -> [[kactl/strings/AhoCorasick.h]]
-
-KACTL part:
-
-%\input chapters/math
-
-%\kactlchapter{math}
+[[trinerdi/base.hpp]]
+[[trinerdi/sc.sh]]
 
 \chapter{Data structures}
 
@@ -51,11 +14,12 @@ KACTL part:
 %[[kactl/data-structures/SubMatrix.h]]
 [[kactl/data-structures/Matrix.h]]
 [[kactl/data-structures/LineContainer.h]]
-[[data_structures/fast_line_container.cpp]]
+[[trinerdi/data-structures/fast_line_container.cpp]]
 %[[kactl/data-structures/Treap.h]]
 [[kactl/data-structures/FenwickTree.h]]
 [[kactl/data-structures/FenwickTree2d.h]]
 [[kactl/data-structures/RMQ.h]]
+[[trinerdi/data-structures/treap.cpp]]
 
 \chapter{Numerical}
 
@@ -76,15 +40,21 @@ KACTL part:
 [[kactl/numerical/MatrixInverse.h]]
 %[[kactl/numerical/Tridiagonal.h]]
 [[kactl/numerical/FFT.h]]
+%[[trinerdi/numerical/fft.cpp]] % KACTL's FFT is faster
 
 \chapter{Number theory}
-
+[[trinerdi/number-theory/prime.cpp]]
+[[trinerdi/number-theory/misc.cpp]]
+[[trinerdi/number-theory/modeq.cpp]]
+[[trinerdi/import/numth/composite_comb.cpp]]
+[[trinerdi/import/numth/dlog.cpp]]
 [[kactl/number-theory/ModularArithmetic.h]]
 [[kactl/number-theory/ModInverse.h]]
 %[[kactl/number-theory/ModPow.h]]
 %[[kactl/number-theory/ModSum.h]]
 [[kactl/number-theory/ModMulLL.h]]
 [[kactl/number-theory/ModSqrt.h]]
+%[[trinerdi/number-theory/ntt.cpp]] % KACTL's NTT is faster
 [[kactl/number-theory/NTT.h]]
 %[[kactl/number-theory/eratosthenes.h]]
 %[[kactl/number-theory/MillerRabin.h]]
@@ -124,7 +94,10 @@ KACTL part:
 [[kactl/graph/TreePower.h]]
 [[kactl/graph/LCA.h]]
 [[kactl/graph/CompressTree.h]]
-%[[kactl/graph/HLD.h]]
+%[[trinerdi/graph/dinic.cpp]] % PushRelabel is faster on SPOJ FASTFLOW
+[[trinerdi/graph/centroid.cpp]]
+[[trinerdi/graph/heavylight2.cpp]]
+%[[kactl/graph/HLD.h]] % Our HLD is shorter
 [[kactl/graph/LinkCutTree.h]]
 [[kactl/graph/MatrixTree.h]]
 
@@ -183,7 +156,9 @@ KACTL part:
 [[kactl/strings/AhoCorasick.h]]
 
 \chapter{Various}
-
+[[trinerdi/various/bit_hacks.cpp]]
+[[trinerdi/various/set_tricks.cpp]]
+[[trinerdi/various/compression.cpp]]
 [[kactl/various/IntervalContainer.h]]
 [[kactl/various/IntervalCover.h]]
 [[kactl/various/ConstantIntervals.h]]
