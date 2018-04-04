@@ -1,5 +1,5 @@
 /**
- * Name: Divide and conquer
+ * Name: Divide and conquer DP
  * Author: Simon Lindholm
  * License: CC0
  * Source: Codeforces
