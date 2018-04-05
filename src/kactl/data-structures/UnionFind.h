@@ -1,5 +1,5 @@
 /**
- * Name: DSU
+ * Name: Union-find data structure
  * Author: Lukas Polacek
  * Date: 2009-10-26
  * License: CC0

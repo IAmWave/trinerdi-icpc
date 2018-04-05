@@ -1,5 +1,5 @@
 /**
- * Name: Aho-Corasick algorithm
+ * Name: Aho-Corasick
  * Author: Simon Lindholm
  * Date: 2015-02-18
  * License: CC0

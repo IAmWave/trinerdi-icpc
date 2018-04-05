@@ -1,5 +1,5 @@
 /**
- * Name: Factorisation
+ * Name: Factorization
  * Author: Lukas Polacek
  * Date: 2010-01-28
  * License: CC0
