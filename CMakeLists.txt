@@ -19,6 +19,7 @@ set(SOURCES_LIST
     number-theory/ntt
     data-structures/treap
     number-theory/prime
+    number-theory/sieve
     number-theory/misc
     number-theory/modeq
     graph/dinic
