@@ -32,6 +32,7 @@ set(SOURCES_LIST
     strings/aho_corasick
     various/set_tricks
     various/compression
+    ../kactl/number-theory/ModSqrt
 )
 
 foreach(CUR ${SOURCES_LIST})
