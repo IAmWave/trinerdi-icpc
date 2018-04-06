@@ -4,7 +4,7 @@
  * Description: Deterministic Miller-Rabin primality test, works for $p \leq 2^{32}$.
  * Time: $O(\log p)$
  */
-#include "misc.cpp"
+#include "fastexp.cpp"
 
 bool isprime(ll p) {
 	if (p == 2 || p == 7 || p == 61)

@@ -20,7 +20,7 @@ set(SOURCES_LIST
     data-structures/treap
     number-theory/prime
     number-theory/sieve
-    number-theory/misc
+    number-theory/fastexp
     number-theory/modeq
     graph/dinic
     graph/lca
