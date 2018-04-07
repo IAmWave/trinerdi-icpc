@@ -8,6 +8,8 @@
 
 bool isprime(ll p) {
 	vector<ll> wit = {2, 7, 61};
+	// For p < 1e18, use 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37
+	// plus KACTL mod_pow (which can multiply modulo m ≤ 1e18)
 	if (count(wit.begin(), wit.end(), p))
 		return true;
 	if (p < 2 || !(p % 2))
