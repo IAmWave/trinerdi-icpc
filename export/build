@@ -6,6 +6,8 @@ import sys
 import subprocess
 
 FILE_LIST = "notebook.tex"
+TITLE_NAME = "title"
+TMP_OUT_NAME = "tmp"
 OUT_NAME = "out"
 
 
@@ -16,7 +18,8 @@ def checksum(line):
     if len(line) == 0:  # Print nothing for an empty line
         return ""
 
-    line = re.sub(r"\s*|//.*", r"", line)
+    line = re.sub(r"//.*", r"", line)
+    line = re.sub(r"\s*", r"", line)
     if len(line) == 0:  # Indent a comment-only line properly
         return " " * numchars
 
@@ -42,13 +45,13 @@ def highlight(text):
         pre, text, post = pre, post[0], post[1]
 
         # The recursion level will be at most 5
-        return (highlight(pre) + "\\%s{%s%s%s}" % (name, begin, text, end), post)
+        return (highlight(pre) + r"\%s{%s%s%s}" % (name, begin, text, end), post)
 
     l = []
     while True:
         # The order is important: /* "string" */ will be highlighted as a comment
         # TODO: preprocessor directives should be ^#.*, but we don't support regexes here
-        for b, e, n in [("//", "\n", "com"), ("/*", "*/", "com"), ("#", "\n", "dir"), ("\"", "\"", "str"), ("'", "'", "str")]:
+        for b, e, n in [("//", "\n", "com"), ("/*", "*/", "com"), ("#", "\n", "dir"), ('"', '"', "str"), ("'", "'", "str")]:
             res = sp(b, e, n, text)
             if res is not None:
                 l.append(res[0])
@@ -77,37 +80,40 @@ def highlight(text):
 
 
 def highlight_and_texify(text):
-    for i in [("\\", "\\\\"), ("{", "\\{"), ("}", "\\}"), ("\n\\}\n\n", "\n\\}\n\\greatsk\n"), ("\n\n", "\n\\sk\n")]:
+    for i in [("\\", r"\\"), ("{", r"\{"), ("}", r"\}"), ("\n\\}\n\n", "\n\\}\n\\greatsk\n"), ("\n\n", "\n\\sk\n")]:
         text = text.replace(i[0], i[1])
 
     return highlight(text)
 
 
-def make_header(header):
+def make_header(header, processed_filename):
     """Extracts relevant information from the header, returns TeX code."""
     def texify(text):
         """A set of hacks trying to convert most common shortcuts in the kactl
         headers (not entering math mode when describing complexities)."""
-        text = text.replace("$O", "$\\O").replace("*", "\cdot ")
+        text = text.replace("$O", r"$\O").replace("*", "\cdot ")
         text = re.sub(r"^O\((.*?)\)", r"$\O(\1)$", text)
         return text
 
     # Other keywords are silently discarded
-    keywords = ["Description", "Time", "Memory", "Usage"]
+    keywords = ["Description", "Time", "Memory", "Usage", "Name"]
 
     l = []
+    heading = r"\ttheader{%s}" % processed_filename
     for h in keywords:
-        if h in header:
-            if h == "Usage":
-                # TODO: quite a hack
-                l.append("{\\leftskip=\\usagedimen\\item{\\bf Usage:}\\raggedright\\simpleverb|%s\\egroup\\par}" % highlight_and_texify(header[h]))
-            else:
-                l.append("{\\bf %s:} %s" % (h, texify(header[h])))
+        if h not in header:
+            continue
 
-    if not l:
-        return ""
-    else:
-        return "\n\n".join(l)
+        if h == "Usage":
+            # TODO: quite a hack
+            l.append(r"{\leftskip=\usagedimen\item{\bf Usage:}\raggedright\simpleverb|%s\egroup\par}" % highlight_and_texify(header[h]))
+        elif h == "Name":
+            heading = r"\header{%s}" % header[h]
+        else:
+            l.append(r"{\bf %s:} %s" % (h, texify(header[h])))
+
+    l = [heading] + l
+    return "\n\n".join(l)
 
 
 def process_file(f, chdir="../src"):
@@ -123,34 +129,61 @@ def process_file(f, chdir="../src"):
         highlighted = highlight_and_texify(text)
 
         def puttogether(hash, line):
-            return "\\h{%s}  %s" % (hash, line) if hash else line
+            return r"\h{%s}  %s" % (hash, line) if hash else line
 
         return header, "\n".join(puttogether(*a) for a in zip(checksums, highlighted.split("\n"))).strip()
 
     def sanitize(text):
-        return text.replace("_", "\\_")
+        return text.replace("_", r"\_")
 
     def work():
         header, text = process(readfile(chdir + "/" + f))
-        yield "\\header{%s}" % sanitize(f)
-        header_text = make_header(header)
+        header_text = make_header(header, sanitize(f))
         if header_text:
             yield header_text
         yield "\n\\smallskip\\verb|" + text
-        yield "\\egroup"
+        yield "\egroup"
 
     print(f)
     return "\n".join(work())
 
 
+def make_title_page():
+    return subprocess.call(["pdfcsplain", TITLE_NAME])
+
+
+def add_title_page():
+    title_pdf = "%s.pdf" % TITLE_NAME
+    tmp_pdf = "%s.pdf" % TMP_OUT_NAME
+    out_pdf = "%s.pdf" % OUT_NAME
+    return subprocess.call(["pdfunite", title_pdf, tmp_pdf, out_pdf])
+
+
 def main():
+    add_title = True
+    if len(sys.argv) > 1 and sys.argv[1] == "--no-title":
+        add_title = False
+
     os.chdir(os.path.realpath(os.path.dirname(sys.argv[0])))
     text = readfile(FILE_LIST).strip()
     text = re.sub(r"(?<=\n)\[\[(.*?)\]\]", lambda a: process_file(a.group(1)), text)
     with open("%s.tex" % OUT_NAME, "w") as f:
         f.write(text)
 
-    exit_code = subprocess.call(["xetex", OUT_NAME])
+    # Two runs are needed because TOC needs to be created at all, the third one
+    # is for correct page numbers in TOC (because the TOC itself may cause
+    # things to appear one page later than previously)
+    for i in range(3):
+        exit_code = subprocess.call(["xetex", OUT_NAME])
+        if exit_code:
+            return exit_code
+
+    if add_title:
+        os.rename("%s.pdf" % OUT_NAME, "%s.pdf" % TMP_OUT_NAME)
+        make_title_page()
+        add_title_page()
+        os.unlink("%s.pdf" % TMP_OUT_NAME)
+
     return exit_code
 
 
@@ -197,6 +230,7 @@ def preprocess(text):
     text = re.sub(r" */\*\*.*?\*/\n?", "", text, flags=re.DOTALL | re.MULTILINE)
     text = re.sub(r"\n? *///.*", "", text, flags=re.MULTILINE)
     text = re.sub(r"^\s*\#pragma once", "", text, flags=re.DOTALL).strip()
+    text = re.sub(r'^\s*\#include "\.\./base.hpp"', "", text, flags=re.DOTALL).strip()
     return header, text
 
 
