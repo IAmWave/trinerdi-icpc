@@ -19,7 +19,8 @@ set(SOURCES_LIST
     number-theory/ntt
     data-structures/treap
     number-theory/prime
-    number-theory/misc
+    number-theory/sieve
+    number-theory/fastexp
     number-theory/modeq
     graph/dinic
     graph/lca
@@ -27,10 +28,12 @@ set(SOURCES_LIST
     graph/heavylight
     graph/heavylight2
     data-structures/persistent_segtree
+    data-structures/lazy_segtree
     data-structures/fast_line_container
     strings/aho_corasick
     various/set_tricks
     various/compression
+    ../kactl/number-theory/ModSqrt
 )
 
 foreach(CUR ${SOURCES_LIST})
