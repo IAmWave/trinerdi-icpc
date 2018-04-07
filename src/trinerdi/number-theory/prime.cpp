@@ -7,7 +7,8 @@
 #include "fastexp.cpp"
 
 bool isprime(ll p) {
-	if (p == 2 || p == 7 || p == 61)
+	vector<ll> wit = {2, 7, 61};
+	if (count(wit.begin(), wit.end(), p))
 		return true;
 	if (p < 2 || !(p % 2))
 		return false;
@@ -17,7 +18,7 @@ bool isprime(ll p) {
 		d /= 2, cnt++;
 	/// It's been proven testing only these witnesses suffices for all p that
 	/// concern us
-	for (ll a: (vector<ll>){2, 7, 61}) {
+	for (ll a: wit) {
 		bool passed = false;
 		ll ad = fastexp(a, d, p);
 		passed |= ad == 1;
