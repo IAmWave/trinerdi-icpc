@@ -178,6 +178,7 @@ def main():
             return exit_code
 
     if add_title:
+        make_title_page()
         add_title_page()
         os.unlink("%s.pdf" % TMP_OUT_NAME)
     else:
